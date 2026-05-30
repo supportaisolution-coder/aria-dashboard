@@ -17,7 +17,7 @@ exports.handler = async (event) => {
     const id = p.id || '';
     if (!table) return { statusCode: 400, headers: cors, body: JSON.stringify({ error: 'table required' }) };
 
-    let url = `https://api.airtable.com/v0/${BASE_ID}/${encodeURIComponent(table)}${id ? '/' + id : ''}`;
+    let url = `https://api.airtable.com/v0/${BASE_ID}/${table}${id ? '/' + id : ''}`;
 
     if (event.httpMethod === 'GET') {
       const q = Object.entries(p).filter(([k]) => k !== 'table' && k !== 'id').map(([k,v]) => `${k}=${encodeURIComponent(v)}`);
